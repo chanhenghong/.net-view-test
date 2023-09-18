@@ -1,0 +1,32 @@
+﻿@model List<CustomerViewModel>;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box box-primary">
+    <h3 class="display-7">Customer List</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">FamilyName</th>
+                <th scope="col">GivenName</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cus in Model)
+            {
+                <tr>
+                    <th scope="row">@cus.customerNum</th>
+                    <td>@cus.familyName</td>
+                    <td>@cus.name</td>
+                    <td>@cus.phoneNumber</td>
+                    <td>@cus.email</td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>

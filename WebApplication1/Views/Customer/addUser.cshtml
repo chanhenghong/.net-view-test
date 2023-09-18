@@ -1,0 +1,50 @@
+﻿@model List<CustomerViewModel>;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box box-primary">
+    <h3 class="display-7">Create Customer</h3>
+    <form id="itemForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter name"><br />
+        <label for="familyName">Family Name:</label>
+        <input type="text" id="familyName" placeholder="Enter family name"><br />
+        <label for="email">Email:</label>
+        <input type="text" id="email" placeholder="Enter email"><br />
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" placeholder="Enter phone number"><br />
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div id="result"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#itemForm').submit(function (event) {
+            event.preventDefault();
+
+            const data = {
+                Name: $('#name').val(),
+                FamilyName: $('#familyName').val(),
+                Email: $('#email').val(),
+                PhoneNumber: $('#phoneNumber').val(),
+                CreateTime: $('#createTime').val()
+            };
+
+            $.ajax({
+                url: 'http://localhost:1010/api/customers', // Replace 'port' with the actual port number
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response) {
+                    $('#result').text('Item added successfully: ' + JSON.stringify(response));
+                },
+                error: function (error) {
+                    $('#result').text('Error adding item: ' + JSON.stringify(error));
+                }
+            });
+        });
+    </script>
+   
+</div>
