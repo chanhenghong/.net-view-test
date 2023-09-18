@@ -40,12 +40,12 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        public IActionResult createUser()
+        public IActionResult createCustomer()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult createUser(CustomerViewModel customer)
+        public IActionResult createCustomer(CustomerViewModel customer)
         {
             using(var client = new HttpClient())
             {
@@ -56,12 +56,14 @@ namespace WebApplication1.Controllers
                 var postResult = postJob.Result;
                 if (postResult.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("createCustomer");
                 }
             }
             ModelState.AddModelError(string.Empty, "Error");
 
             return View(customer);
         }
+
+
     }
 }
